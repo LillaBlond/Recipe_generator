@@ -1,0 +1,54 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header{
+    width: 100%;
+    padding: 50px;
+    text-align: center;
+    background-color: bisque;
+}
+
+header h1{
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+#searchSection{
+    width: 400px;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#searchField{
+    width: 80%;
+}
+
+#recipesContainer{
+    display: inline-flex;
+    width: fit-content;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 40px auto;
+}
+
+.recipeBox{
+    padding: 10px;
+    height: 300px;
+    width: 300px;
+    background-color: lightgoldenrodyellow;
+}
+
+.smallInfo{
+    display: inline-block;
+}
+
+.divider::after{
+    content: "|";
+    margin-left: 5px;
+}

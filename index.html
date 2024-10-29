@@ -8,6 +8,29 @@
     <script src="js/main.js" defer></script>
 </head>
 <body>
+    <header>
+        <h1>Recipe Generator</h1>
+        <h2>No need to go hungry</h2>
+    </header>
+    <section id="searchSection">
+        <input type="text" id="searchField" placeholder="Search for a recipe of ingredient">
+        <input type="button" value="Search"  onclick="showRecipies()">
+
+    </section>
+    <div id="recipesContainer">
+        <article class="recipeBox">
+            <img src="" alt="Här ska det vara en bild">
+            <h2>Här är en recepttitel</h2>
+            <p class="smallInfo divider">Calories</p>
+            <p class="smallInfo divider">Ingredients</p>
+            <p class="smallInfo">Cooking time</p>
+        </article>
+        <article class="recipeBox"></article>
+        <article class="recipeBox"></article>
+        <article class="recipeBox"></article>
+        <article class="recipeBox"></article>
+        <article class="recipeBox"></article>
+    </div>
     
 </body>
 </html>
