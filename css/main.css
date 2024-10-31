@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color:lightgrey;
+}
+
 header{
     width: 100%;
     padding: 50px;
@@ -18,8 +22,8 @@ header h1{
 }
 
 #searchSection{
-    width: 400px;
-    border: 1px solid black;
+    width: 600px;
+    
     padding: 20px;
     margin: 20px auto;
     text-align: center;
@@ -29,19 +33,59 @@ header h1{
     width: 80%;
 }
 
+.filterSection{
+    display: inline-block;
+    width: 40%;
+}
+
+.filterSection h3{
+    border-bottom: 1px solid black;
+    text-align: left;
+    padding: 10px;
+    background-color: lightseagreen;
+}
+
+ul{
+    padding: 10px 20px;
+}
+
+li{
+    text-align: left;
+    list-style: none;
+}
+
 #recipesContainer{
     display: inline-flex;
     width: fit-content;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 50px;
     margin: 40px auto;
 }
 
 .recipeBox{
-    padding: 10px;
-    height: 300px;
+    height: 440px;
     width: 300px;
-    background-color: lightgoldenrodyellow;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.recipeBox img{
+    height: 300px;
+    border-radius: 10px 10px 0 0;
+}
+
+.recipeSlideText{
+    padding: 10px;
+}
+
+.recipeSlideText span{
+    font-size: bold;
+    color: darkorange;
+}
+
+.recipeSlideText h2{
+    font-size: 18px;
+    margin: 10px 0;
 }
 
 .smallInfo{
