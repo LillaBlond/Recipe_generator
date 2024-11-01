@@ -8,131 +8,139 @@
     <script src="js/main.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>Recipe Generator</h1>
-    </header>
-    <section id="searchSection">
-        <input type="text" id="searchField" placeholder="Search for a recipe of ingredient">
-        <input type="button" value="Search"  onclick="showRecipies()">
-        <div id="filters">
-            <h2>Filter by criteria</h2>
-            <section class="filterSection">
-                <h3>Diet &#9207;</h3>
-                <ul>
-                    <li>
-                        <input type="checkbox" value="paleo" name="health">
-                        <label for="paleo">Paleo</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="vegan" name="health">
-                        <label for="vegan">Vegan</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="vegetarian" name="health">
-                        <label for="vegetarian">Vegetarian</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="high-fiber" name="diet">
-                        <label for="highFiber">High-fiber</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="high-protein" name="diet">
-                        <label for="highProtein">High-protein</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="low-carb" name="diet">
-                        <label for="lowCarb">Low-carb</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="low-fat" name="diet">
-                        <label for="lowFat">Low-fat</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="low-sodium" name="diet">
-                        <label for="lowSodium">Low-sodium</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="low-sugar" name="health">
-                        <label for="lowSugar">Low-sugar</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="balanced" name="diet">
-                        <label for="balanced">Balanced</label>
-                    </li>
-                </ul>
-            </section>
-            <section class="filterSection">
-                <h3>Allergies &#9207;</h3>
-                <ul>
-                    <li>
-                        <input type="checkbox" value="gluten-free" name="health">
-                        <label for="glutenFree">Gluten</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="dairy-free" name="health">
-                        <label for="dairyFree">Dairy</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="egg-free" name="health">
-                        <label for="eggFree">Eggs</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="soy-free" name="health">
-                        <label for="soyFree">Soy</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="wheat-free" name="health">
-                        <label for="wheatFree">Wheat</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="fish-free" name="health">
-                        <label for="fishFree">Fish</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="shellfish-free" name="health">
-                        <label for="shellfishFree">Shellfish</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="tree-nuts-free" name="health">
-                        <label for="treeNutsFree">Tree Nuts</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="peanut-free" name="health">
-                        <label for="peanutFree">Peanuts</label>
-                    </li>
-                </ul>
-                </section>
-            <section class="filterSection">
-                <h3>Meal Type &#9207;</h3>
-                <ul>
-                    <li>
-                        <input type="checkbox" value="breakfast" name="mealType">
-                        <label for="breakfast">Breakfast</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="lunch" name="mealType">
-                        <label for="lunch">Lunch</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="dinner" name="mealType">
-                        <label for="dinner">Dinner</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="snack" name="mealType">
-                        <label for="snack">Snack</label>
-                    </li>
-                    <li>
-                        <input type="checkbox" value="teatime" name="mealType">
-                        <label for="teatime">Teatime</label>
-                    </li>
-                </ul>
+    <div id="site-wrapper">
+
+        <header>
+            <h1>Recipe Generator</h1>
+            
+        </header>
+        <section id="searchSection">
+            <input type="text" id="searchField" placeholder="Search for a recipe of ingredient">
+            <input type="button" value="Search"  onclick="getRecipes('searchBtn')">
+            <div id="filters">
+                <h2>Filter by criteria &#9207</h2>
+                    <section class="filterSection">
+                        
+                        <h3>Diet</h3>
+                        <ul>
+                            <li>
+                                <input type="checkbox" value="paleo" name="health">
+                                <label for="paleo">Paleo</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="vegan" name="health">
+                                <label for="vegan">Vegan</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="vegetarian" name="health">
+                                <label for="vegetarian">Vegetarian</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="high-fiber" name="diet">
+                                <label for="highFiber">High-fiber</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="high-protein" name="diet">
+                                <label for="highProtein">High-protein</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="low-carb" name="diet">
+                                <label for="lowCarb">Low-carb</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="low-fat" name="diet">
+                                <label for="lowFat">Low-fat</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="low-sodium" name="diet">
+                                <label for="lowSodium">Low-sodium</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="low-sugar" name="health">
+                                <label for="lowSugar">Low-sugar</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="balanced" name="diet">
+                                <label for="balanced">Balanced</label>
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="filterSection">
+                        <h3>Allergies</h3>
+                        <ul>
+                            <li>
+                                <input type="checkbox" value="gluten-free" name="health">
+                                <label for="glutenFree">Gluten</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="dairy-free" name="health">
+                                <label for="dairyFree">Dairy</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="egg-free" name="health">
+                                <label for="eggFree">Eggs</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="soy-free" name="health">
+                                <label for="soyFree">Soy</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="wheat-free" name="health">
+                                <label for="wheatFree">Wheat</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="fish-free" name="health">
+                                <label for="fishFree">Fish</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="shellfish-free" name="health">
+                                <label for="shellfishFree">Shellfish</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="tree-nuts-free" name="health">
+                                <label for="treeNutsFree">Tree Nuts</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="peanut-free" name="health">
+                                <label for="peanutFree">Peanuts</label>
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="filterSection">
+                        <h3>Meal Type</h3>
+                        <ul>
+                            <li>
+                                <input type="checkbox" value="breakfast" name="mealType">
+                                <label for="breakfast">Breakfast</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="lunch" name="mealType">
+                                <label for="lunch">Lunch</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="dinner" name="mealType">
+                                <label for="dinner">Dinner</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="snack" name="mealType">
+                                <label for="snack">Snack</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" value="teatime" name="mealType">
+                                <label for="teatime">Teatime</label>
+                            </li>
+                        </ul>
+                    </section>
                 </section>
             </div>
-            
-        </section>
-        <section id="recipesContainer">
-       
-        </section>
-    
-</body>
-</html>
+            <div id="recipeContentWrapper">
+                <section id="recipesContainer"></section>
+            </div>
+            <section id="changePageBtn">
+                <button id="previous" onclick="getRecipes('previousBtn')">&#11164 Previous</button>
+                <button id="next" onclick="getRecipes('nextBtn')">Next &#11166</button>
+            </section>
+    </div>
+        
+    </body>
+    </html>

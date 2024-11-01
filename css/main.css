@@ -11,14 +11,15 @@ body{
 
 header{
     width: 100%;
-    padding: 50px;
+    padding: 20px;
     text-align: center;
-    background-color: bisque;
+    background-color: black;
 }
 
 header h1{
     font-size: 60px;
     margin-bottom: 20px;
+    color: white;
 }
 
 #searchSection{
@@ -33,16 +34,21 @@ header h1{
     width: 80%;
 }
 
+#filters{
+    margin-top: 20px;
+    background-color: tan;
+}
+
+
 .filterSection{
     display: inline-block;
-    width: 40%;
+    margin: 20px 10px;
 }
 
 .filterSection h3{
     border-bottom: 1px solid black;
     text-align: left;
-    padding: 10px;
-    background-color: lightseagreen;
+    padding: 5px 20px;
 }
 
 ul{
@@ -54,12 +60,16 @@ li{
     list-style: none;
 }
 
+#recipeContentWrapper{
+    margin: auto;
+    width: fit-content;
+    text-align: center;
+}
 #recipesContainer{
     display: inline-flex;
     width: fit-content;
     flex-wrap: wrap;
     gap: 50px;
-    margin: 40px auto;
 }
 
 .recipeBox{
@@ -95,4 +105,18 @@ li{
 .divider::after{
     content: "|";
     margin-left: 5px;
+}
+
+button{
+    padding: 10px;
+    margin: 20px;
+    background-color: black;
+    color: white;
+    box-shadow: 1px 2px 4px black;
+    border: none;
+    border-radius: 10px;
+}
+
+#next{
+    float: right;
 }

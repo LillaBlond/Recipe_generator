@@ -26,25 +26,61 @@
 //	&#9206; up arrow
  
 //https://developer.edamam.com/edamam-docs-recipe-api
-const id = "app_id=3084edd9";
-const key="app_key=7114784343669c87f0effc510b0e4879";
 
-async function showRecipies(){
-    const addedFilters = checkFilterSelection();
-    const search = "&q=" + document.getElementById("searchField").value;
-    let link = `https://api.edamam.com/api/recipes/v2?type=any&beta=false&${id}&${key}&${search}${addedFilters}`
-  
+let currentPage = 0;
+let currentLink = "";
+let nextPageLink = "";
+let previousPageLinks = [];
+
+function getLink(caller){
+
+    switch(caller){
+        case "nextBtn":
+            if(nextPageLink){
+                if(currentPage === previousPageLinks.length){
+                    previousPageLinks.push(currentLink);
+                }
+                currentLink = nextPageLink;
+                currentPage ++;
+                return nextPageLink;
+            }
+            break;
+        case "previousBtn":
+            if(previousPageLinks.length > 1) {
+                currentPage --;
+                return previousPageLinks[currentPage];
+            }
+            break;
+        case "searchBtn":
+            currentPage = 0;
+            previousPageLinks = [];
+            const addedFilters = checkFilterSelection();
+            const searchValue = "&q=" + document.getElementById("searchField").value;
+            const id = "app_id=3084edd9";
+            const key="app_key=7114784343669c87f0effc510b0e4879";
+            currentLink = `https://api.edamam.com/api/recipes/v2?type=any&beta=false&${id}&${key}&${searchValue}${addedFilters}`; 
+            return currentLink;
+        default:
+            return false;
+    }
+}
+
+
+
+async function fetchData(link){
+    
     try{
         const response = await fetch(link);
         if(!response.ok) {
-            throw new Error (`HTTP error code: ${response.status}, HTTP error message: ${response.statusText}`);
+            
+            throw new Error (`HTTP error code: ${response.error}, HTTP error message: ${response.statusText}`);
         }
+            
         const data = await  response.json();
-        console.log(link);
-        console.log(data);
-        addRecipeCard(data);
+        return data;
+
     }catch(error){
-        console.log(error)
+        console.log(error, error.message);
     }
 }
 
@@ -99,3 +135,33 @@ function showCookingTime(time){
     else if (!hours && minutes) return `${minutes} min`;
     else return "n/a";
 }
+
+async function getRecipes(caller){
+    const currentLink = getLink(caller);
+
+    if(currentLink){
+        const data = await fetchData(currentLink);
+        
+        if(!data.hits.length){
+            const emptySearchErrorMessage = "<h2>No recipes found</h2>"
+            document.getElementById("recipesContainer").innerHTML = emptySearchErrorMessage;
+        } else 
+        {
+            if(data._links.next){
+            nextPageLink = data._links.next.href;
+            }
+        
+        addRecipeCard(data);
+        }
+    }
+}
+
+ function showHideMenu(e){
+    const dropDownMenu = e.target.parentElement.children[1]
+    if(dropDownMenu.style.display === ""){
+        dropDownMenu.style.display = "block";
+        console.log("show");
+    } else {dropDownMenu.removeAttribute("style");
+        console.log("test");
+    }
+ }
