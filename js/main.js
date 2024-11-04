@@ -1,28 +1,3 @@
-/**
- *  OMDb template
- *	Documentation: http://www.omdbapi.com/
- *  Generate an API key here: http://www.omdbapi.com/apikey.aspx
- */
-
-
-/**
-* According to documentation, you need at least 2 parameters when calling the API http://www.omdbapi.com/
-* 1 Required parameter: apikey
-* 2 Required parameter: One of the following i=, t= or s=
-*
-* 
-* Example with parameter s=star trek
-* http://www.omdbapi.com/?apikey=[yourkey]&s=star trek
-*
-* Example with parameter s=star trek AND y=2020
-* http://www.omdbapi.com/?apikey=[yourkey]&s=star trek&y=2020
-*
-* Example with parameter s=star trek AND type=series
-* http://www.omdbapi.com/?apikey=[yourkey]&s=star trek&type=series
-*
-*/
-//let url = 'http://www.omdbapi.com/?apikey=[yourkey]=star trek';
-
 //	&#9206; up arrow
  
 //https://developer.edamam.com/edamam-docs-recipe-api
@@ -31,6 +6,7 @@ let currentPage = 0;
 let currentLink = "";
 let nextPageLink = "";
 let previousPageLinks = [];
+let totalPages = 0;
 
 function getLink(caller){
 
@@ -77,10 +53,12 @@ async function fetchData(link){
         }
             
         const data = await  response.json();
+        console.log(data);
         return data;
 
     }catch(error){
-        console.log(error, error.message);
+        console.log(`Error: ${error}, ${error.message} `);
+        document.getElementById("recipesContainer").innerHTML = `Error: ${error}, ${error.message}`;
     }
 }
 
@@ -90,24 +68,25 @@ function addRecipeCard(api_data){
     
     const recipeCard = hits.map((element) => {
 
-        return recipeData = `<article class="recipeBox">
+        return recipeData = `<article class="recipeBox"><a href="${element.recipe.url}">
             <img src="${element.recipe.image}" alt="Här ska det vara en bild">
             <section class="recipeSlideText">
                 <h2>${element.recipe.label}</h2>
                 <p class="smallInfo divider"><span>${Math.round(element.recipe.calories)}</span> Calories</p>
                 <p class="smallInfo divider"><span>${element.recipe.ingredients.length}</span> Ingredients</p>
                 <p class="smallInfo">${showCookingTime(element.recipe.totalTime)}</p>
-            </section>
+            </section></a>
         </article>`
     }).join("");
 
     document.getElementById("recipesContainer").innerHTML = recipeCard;
+    document.getElementById("pageNumber").innerText = `Sida ${currentPage} av ${totalPages}`;
 }
 
 function checkFilterSelection(){
-    const dietValuesArr = document.querySelectorAll(".filterSection input[name=diet]");
-    const allergiesFilterArr = document.querySelectorAll(".filterSection input[name=health]");
-    const mealTypeArr = document.querySelectorAll(".filterSection input[name=mealType]");
+    const dietValuesArr = document.querySelectorAll("input[name=diet]");
+    const allergiesFilterArr = document.querySelectorAll("input[name=health]");
+    const mealTypeArr = document.querySelectorAll("input[name=mealType]");
     let filterValues = "";
 
     dietValuesArr.forEach((selection) => {
@@ -130,9 +109,9 @@ function showCookingTime(time){
     const minutes = time % 60;
     const hours = Math.floor(time/60);
 
-    if(hours && minutes) return `${hours} h and ${minutes} min`;
-    else if (hours && !minutes) return `${hours} h`;
-    else if (!hours && minutes) return `${minutes} min`;
+    if(hours && minutes) return `<span>${hours}</span> h and <span>${minutes}</span> min`;
+    else if (hours && !minutes) return `<span>${hours} h`;
+    else if (!hours && minutes) return `<span>${minutes}</span> min`;
     else return "n/a";
 }
 
@@ -151,17 +130,8 @@ async function getRecipes(caller){
             nextPageLink = data._links.next.href;
             }
         
+        totalPages = Math.ceil(data.count/20);
         addRecipeCard(data);
         }
     }
 }
-
- function showHideMenu(e){
-    const dropDownMenu = e.target.parentElement.children[1]
-    if(dropDownMenu.style.display === ""){
-        dropDownMenu.style.display = "block";
-        console.log("show");
-    } else {dropDownMenu.removeAttribute("style");
-        console.log("test");
-    }
- }

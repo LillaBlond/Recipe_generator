@@ -9,19 +9,18 @@
 </head>
 <body>
     <div id="site-wrapper">
-
         <header>
-            <h1>Recipe Generator</h1>
-            
+            <h1>Recipe inspiration</h1>
         </header>
         <section id="searchSection">
+            <div id="sideImage"></div>
+            <div id="shadow"></div>
             <input type="text" id="searchField" placeholder="Search for a recipe of ingredient">
             <input type="button" value="Search"  onclick="getRecipes('searchBtn')">
             <div id="filters">
-                <h2>Filter by criteria &#9207</h2>
-                    <section class="filterSection">
+                    <section id="dietFilter">
                         
-                        <h3>Diet</h3>
+                        <button>Diet &#9207</button>
                         <ul>
                             <li>
                                 <input type="checkbox" value="paleo" name="health">
@@ -65,8 +64,8 @@
                             </li>
                         </ul>
                     </section>
-                    <section class="filterSection">
-                        <h3>Allergies</h3>
+                    <section id="allergiesFilter">
+                        <button>Allergies &#9207</button>
                         <ul>
                             <li>
                                 <input type="checkbox" value="gluten-free" name="health">
@@ -106,8 +105,8 @@
                             </li>
                         </ul>
                     </section>
-                    <section class="filterSection">
-                        <h3>Meal Type</h3>
+                    <section id="mealTypeFilter">
+                        <button>Meal Type &#9207</button>
                         <ul>
                             <li>
                                 <input type="checkbox" value="breakfast" name="mealType">
@@ -131,15 +130,14 @@
                             </li>
                         </ul>
                     </section>
-                </section>
             </div>
-            <div id="recipeContentWrapper">
-                <section id="recipesContainer"></section>
-            </div>
-            <section id="changePageBtn">
-                <button id="previous" onclick="getRecipes('previousBtn')">&#11164 Previous</button>
-                <button id="next" onclick="getRecipes('nextBtn')">Next &#11166</button>
-            </section>
+        </section>
+        <section id="recipesContainer"></section>
+        <section id="bottomButtonsContainer">
+            <button id="previous" onclick="getRecipes('previousBtn')">&#11164 Previous</button>
+            <p id="pageNumber">Sida 0 av 0</p>
+            <button id="next" onclick="getRecipes('nextBtn')">Next &#11166</button>
+        </section>
     </div>
         
     </body>
