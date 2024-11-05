@@ -13,28 +13,30 @@ function getLink(caller){
     switch(caller){
         case "nextBtn":
             if(nextPageLink){
-                if(currentPage === previousPageLinks.length){
+                if(currentPage === previousPageLinks.length+1){
                     previousPageLinks.push(currentLink);
                 }
+                if(currentPage !== totalPages){
+                    currentPage ++;
+                }
                 currentLink = nextPageLink;
-                currentPage ++;
                 return nextPageLink;
             }
-            break;
+            return false;
         case "previousBtn":
             if(previousPageLinks.length > 1) {
                 currentPage --;
                 return previousPageLinks[currentPage];
             }
-            break;
+            return false;
         case "searchBtn":
-            currentPage = 0;
+            currentPage = 1;
             previousPageLinks = [];
             const addedFilters = checkFilterSelection();
-            const searchValue = "&q=" + document.getElementById("searchField").value;
+            const searchValue = "q=" + document.getElementById("searchField").value;
             const id = "app_id=3084edd9";
             const key="app_key=7114784343669c87f0effc510b0e4879";
-            currentLink = `https://api.edamam.com/api/recipes/v2?type=any&beta=false&${id}&${key}&${searchValue}${addedFilters}`; 
+            currentLink = `https://api.edamam.com/api/recipes/v2?type=any&beta=false&${id}&${key}&${searchValue}${addedFilters}`;
             return currentLink;
         default:
             return false;
@@ -49,16 +51,23 @@ async function fetchData(link){
         const response = await fetch(link);
         if(!response.ok) {
             
-            throw new Error (`HTTP error code: ${response.error}, HTTP error message: ${response.statusText}`);
+            if(response.status === 429){
+                document.getElementById("recipesContainer").innerHTML = "<h2>Just nu är det högt tryck på servern. Vänta 1 minut och prova igen</h2>";
+                throw new Error (`HTTP error code: ${response.status}, HTTP error message: Reached limit of more than 10 calls per minute.`);
+
+            }
+            else{
+                console.log(`HTTP error code: ${response.status}, HTTP error message: ${response.statusText}`);
+                throw new Error (`HTTP error code: ${response.status}, HTTP error message: ${response.statusText}`);
+            }
+
         }
             
         const data = await  response.json();
-        console.log(data);
         return data;
 
     }catch(error){
-        console.log(`Error: ${error}, ${error.message} `);
-        document.getElementById("recipesContainer").innerHTML = `Error: ${error}, ${error.message}`;
+        console.log(`Error: ${error.status}, ${error.message}`);
     }
 }
 
@@ -72,9 +81,11 @@ function addRecipeCard(api_data){
             <img src="${element.recipe.image}" alt="Här ska det vara en bild">
             <section class="recipeSlideText">
                 <h2>${element.recipe.label}</h2>
+                <div class="recipeDetails">
                 <p class="smallInfo divider"><span>${Math.round(element.recipe.calories)}</span> Calories</p>
                 <p class="smallInfo divider"><span>${element.recipe.ingredients.length}</span> Ingredients</p>
                 <p class="smallInfo">${showCookingTime(element.recipe.totalTime)}</p>
+                </div>
             </section></a>
         </article>`
     }).join("");
