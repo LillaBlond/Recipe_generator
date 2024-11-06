@@ -24,9 +24,9 @@ function getLink(caller){
             }
             return false;
         case "previousBtn":
-            if(previousPageLinks.length > 1) {
+            if(currentPage > 1) {
                 currentPage --;
-                return previousPageLinks[currentPage];
+                return previousPageLinks[currentPage-1];
             }
             return false;
         case "searchBtn":
