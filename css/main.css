@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Frank+Ruhl+Libre:wght@300..900&family=Grape+Nuts&family=Inspiration&family=Pacifico&display=swap');
 
 *{
     padding: 0;
@@ -9,7 +8,7 @@
 #site-wrapper{
     background-color: beige;
     min-height: 100vh;
-    min-width: 500px;
+    min-width: 375px;
     display: grid;
     grid-template-columns:1fr;
     grid-template-rows: 100px 110px 1fr 90px;
@@ -24,24 +23,13 @@ header{
 }
 
 header h1{
+    padding-top: 10px;
     font-size: 60px;
-    color: black;
-    font-family: "Frank Ruhl Libre", serif;
-    font-weight: 400;
+    color: #758154;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
     font-style: italic;
-
-}
-
-#searchSection{
-    position: relative;
-    background-color:#758154;
-    grid-row: 2/3;
-    grid-column: 1/2;
-    width: 100%;
-    padding: 20px 0 10px;
-    text-align: center;
-    background-image: linear-gradient(#566135 0% 1%,#758154 5% 95%,#566135);
-    box-shadow: 0 4px 4px grey;
+    text-shadow: 2px 2px 5px lightgray;
 }
 
 #sideImage{
@@ -59,16 +47,20 @@ header h1{
     z-index: 10;
 }
 
-#shadow{
-    position: absolute;
-    bottom: -84px;
-    left: 20px;
-    height: 300px;
-    width: 300px;
-    box-shadow: 0 4px 4px 2px grey;
-    border-radius: 50%;
-    z-index: -10;
+/*##################### Searh section elements ##########################*/
+
+#searchSection{
+    position: relative;
+    background-color:#758154;
+    grid-row: 2/3;
+    grid-column: 1/2;
+    width: 100%;
+    padding: 20px 0 10px;
+    text-align: center;
+    background-image: linear-gradient(#566135 0% 1%,#758154 5% 95%,#566135);
+    box-shadow: 0 4px 4px grey;
 }
+
 
 #searchField{
     width: 400px;
@@ -78,6 +70,17 @@ header h1{
     padding: 10px;
     border-radius: 10px;
     border: none;
+}
+
+#searchSection input[type=text]{
+    box-shadow: inset 1px 2px 4px grey;
+}
+
+#searchSection input[type=button]{
+    color:#894700;
+    font-weight: bold;
+    margin-left: 5px;
+    box-shadow: inset 0px 0px 4px 1px grey;
 }
 
 #searchSection input[type=button]:hover{
@@ -131,6 +134,8 @@ li{
 }
 
 
+/*###################### Recipe card container elements #####################*/
+
 
 #recipesContainer{
     grid-column: 1/2;
@@ -139,15 +144,15 @@ li{
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: 50px;
+    max-width: 1200px;
     padding: 100px 100px 0;
 }
 
 .recipeBox{
     flex: 1 1 0;
-    min-height: 400px;
     max-height: 440px;
     max-width: 300px;
-    min-width: 280px;
+    min-width: 200px;
     background-color: white;
     border-radius: 10px;
     box-shadow: 2px 4px 4px grey;
@@ -164,6 +169,7 @@ li{
 }
 
 .recipeSlideText{
+    color:#4b4a4a;
     font-size: 14px;
     padding: 10px;
 }
@@ -181,7 +187,7 @@ li{
 
 .recipeSlideText h2{
     font-size: 18px;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
 .smallInfo{
@@ -192,6 +198,14 @@ li{
     content: "|";
     margin-left: 5px;
 }
+
+
+#recipesContainer a{
+    color: black;
+    text-decoration: none;
+}
+
+/*#################### Bottom container elements ##############################*/
 
 #bottomContainer{
     display: flex;
@@ -248,8 +262,91 @@ li{
     color: lightsalmon;
 }
 
-#recipesContainer a{
-    color: black;
-    text-decoration: none;
+
+/*########################## Media queries ######################*/
+
+@media only screen and (max-width: 1100px){
+    #sideImage{
+        bottom: -42px;
+        height: 200px;
+        width: 200px;
+    }
 }
 
+@media only screen and (max-width: 900px){
+    #sideImage{
+        display: none;
+    }
+
+    #recipesContainer{
+        padding: 50px 50px 20px;
+    }
+
+}
+
+@media only screen and (max-width: 675px){
+    
+    #site-wrapper{
+        grid-template-rows: 70px 110px 1fr 70px;
+    }
+
+    header h1{
+        font-size: 40px;
+    }
+
+    
+
+    #pageNumber{
+        margin-bottom: 10px;
+    }
+
+    #bottomContainer button{
+        padding: 5px 10px;
+        margin: 10px;
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    
+    header h1{
+        font-size: 30px;
+    }
+
+    #site-wrapper{
+        grid-template-rows: 70px 80px 1fr 70px;
+    }
+
+    #searchSection{
+        padding: 10px;
+    }
+
+    #searchSection input{
+        padding: 10px;
+    }
+
+    #searchField{
+        width:70%;
+    }
+
+    #filters button{
+        font-size: 14px;
+    }
+
+    #filters button{
+        width: 110px;
+        padding: 0;
+    }
+
+    li{
+        font-size: 12px;
+    }
+
+    #dietFilter, #allergiesFilter, #mealTypeFilter{
+        margin-top: 5px;
+    }
+
+    
+}
+
+ 
