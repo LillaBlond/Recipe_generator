@@ -83,11 +83,11 @@ function addRecipeCard(api_data){
                 <h2>${element.recipe.label}</h2>
                 <div class="recipeDetails">
                 <p class="smallInfo divider"><span>${Math.round(element.recipe.calories)}</span> Calories</p>
-                <p class="smallInfo divider"><span>${element.recipe.ingredients.length}</span> Ingredients</p>
-                <p class="smallInfo">${showCookingTime(element.recipe.totalTime)}</p>
+                <p class="smallInfo"><span>${element.recipe.ingredients.length}</span> Ingredients</p>
                 </div>
-            </section></a>
-        </article>`
+                </section></a>
+                </article>`
+               /*  <p class="smallInfo">${showCookingTime(element.recipe.totalTime)}</p> */
     }).join("");
 
     document.getElementById("recipesContainer").innerHTML = recipeCard;
