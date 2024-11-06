@@ -91,7 +91,7 @@ function addRecipeCard(api_data){
     }).join("");
 
     document.getElementById("recipesContainer").innerHTML = recipeCard;
-    document.getElementById("pageNumber").innerText = `Sida ${currentPage} av ${totalPages}`;
+    document.getElementById("pageNumber").innerText = `Page ${currentPage} of ${totalPages}`;
 }
 
 function checkFilterSelection(){

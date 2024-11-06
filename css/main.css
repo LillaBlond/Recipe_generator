@@ -223,10 +223,29 @@ li{
     background-color: #898989;
 }
 
-#pageNumber{
-    display: inline;
+#bottomText{
     font-weight: bold;
     color: darkolivegreen;
+    text-align: center;
+}
+
+
+#pageNumber{
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+#bottomText a{
+    color: grey;
+    font-size: 14px;
+}
+
+#bottomText a:hover{
+    color: darkorange;
+}
+
+#bottomText a:active{
+    color: lightsalmon;
 }
 
 #recipesContainer a{
